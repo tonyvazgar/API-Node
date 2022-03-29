@@ -1,0 +1,17 @@
+Para prueba de postman:
+
+{
+    "name":"Tony",
+    "album":"Album",
+    "cover":"https://ejemplo.com",
+    "artist":{
+        "name":"Tony",
+        "nickname":"tonyvazgar",
+        "nationality":"MX"
+    },
+    "duration":{
+        "start":1,
+        "end":0
+    },
+    "mediaId":"621e7499a1f699063f5114bc"
+}
