@@ -8,8 +8,15 @@ app.use(cors())
 
 const port = process.env.PORT || 5000;
 
+/*
+ *  AQUI INVOCAMOS A LAS RUTAS DE TRACKS
+ */
+//TODO lo que va en LOCALHOST/API/****
+app.use('/api', require('./routes/'));
+
+
 app.listen(port, () => {
         console.log("Corriendo en http://localhost:" + port);
-    });
+});
 
-    dbConnect();
+dbConnect();
