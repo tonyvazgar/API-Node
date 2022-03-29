@@ -102,3 +102,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+#Archivos de almacenamiento (para no subirlos a git)
+/storage/*
