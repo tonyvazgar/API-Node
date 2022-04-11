@@ -8,6 +8,6 @@ const {getItems, getItem, createItems} = require("../controllers/tracks");
 
 router.get('/', getItems);
 router.get('/:id', getItem);
-router.post('/', validatorCreateItem, customHeader, createItems);
+router.post('/', validatorCreateItem, createItems);
 
 module.exports = router;

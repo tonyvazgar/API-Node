@@ -1,4 +1,6 @@
+const { matchedData } = require('express-validator');
 const {tracksModel} = require('../models');
+const {handleHttpError} = require("../utils/handleError");
 
 /**
  * Obtener lista de la base de datos
@@ -6,9 +8,12 @@ const {tracksModel} = require('../models');
  * @param {*} res 
  */
 const getItems = async (req, res) => {
-    // const data = ["holaa", "amigo"];
+    try {
     const data = await tracksModel.find({});
     res.send({data});
+    } catch(e) {
+        handleHttpError(res, "ERROR_GET_ITEMS");
+    }
 };
 
 /**
@@ -26,10 +31,15 @@ const getItem = (req, res) => {
  * @param {*} res 
  */
 const createItems = async (req, res) => {
-    const {body} = req
-    console.log(body)
+
+    try {
+    const body = matchedData(req);
+    // console.log(body)
     const data = await tracksModel.create(body)
     res.send({data})
+    } catch(e) {
+        handleHttpError(res, "ERROR_CREATE_ITEMS");
+    }
 };
 
 /**
