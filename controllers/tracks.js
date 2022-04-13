@@ -21,8 +21,15 @@ const getItems = async (req, res) => {
  * @param {*} req 
  * @param {*} res 
  */
-const getItem = (req, res) => {
-    res.send("Soy un item!");
+const getItem = async (req, res) => {
+    try {
+        req = matchedData(req);
+        const {id} = req;
+        const data = await tracksModel.findById(id);
+        res.send({data});
+    } catch (error) {
+        handleHttpError(res, "ERROR_GET_ITEM");
+    }
 };
 
 /**
@@ -47,8 +54,16 @@ const createItems = async (req, res) => {
  * @param {*} req 
  * @param {*} res 
  */
-const deleteItems = (req, res) => {
-
+const deleteItem = async (req, res) => {
+    try {
+        req = matchedData(req);
+        const {id} = req;
+        const data = await tracksModel.deleteOne({_id:id});
+        res.send({data});
+    } catch (error) {
+        console.log(error)
+        handleHttpError(res, "ERROR_Delete_ITEM");
+    }
 };
 
 /**
@@ -56,9 +71,17 @@ const deleteItems = (req, res) => {
  * @param {*} req 
  * @param {*} res 
  */
-const updateItems = (req, res) => {
-
+const updateItem = async (req, res) => {
+    try {
+        const {id, ...body} = matchedData(req);
+        const data = await tracksModel.findOneAndUpdate(
+            id, body
+        );
+        res.send({data})
+    } catch(e) {
+        handleHttpError(res, "ERROR_UPDATE_ITEMS");
+    }
 };
 
 
-module.exports = {getItems, getItem, createItems, deleteItems, updateItems};
+module.exports = {getItems, getItem, createItems, deleteItem, updateItem};
