@@ -47,6 +47,16 @@
 				{
 					"name": "Insertar registro",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVkODhhOWQ5MmZkODQ1OTM4NmM3NmEiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNjUwMzA4NzUzLCJleHAiOjE2NTAzMTU5NTN9.0bO0iJJ0OzII2VPXx05O_OdFJvakuaRcjB4cGIt8h58",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -86,6 +96,16 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVkODhhOWQ5MmZkODQ1OTM4NmM3NmEiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNjUwMzA4NzUzLCJleHAiOjE2NTAzMTU5NTN9.0bO0iJJ0OzII2VPXx05O_OdFJvakuaRcjB4cGIt8h58",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -288,7 +308,111 @@
 		},
 		{
 			"name": "Auth",
-			"item": []
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Auri2\",\n    \"age\": \"4\",\n    \"email\": \"auri2@icloud.com\",\n    \"password\": \"123ff4\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"auri2@icloud.com\",\n    \"password\":\"123ff4\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjVkODhhOWQ5MmZkODQ1OTM4NmM3NmEiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNjUwMzEyMDA5LCJleHAiOjE2NTAzMTkyMDl9.Lsj0kVzTXMVG6Hm5nSZaK_LjcKqeKXbPvcGfNwXqRLY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"list"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
