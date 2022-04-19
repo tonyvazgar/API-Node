@@ -1,7 +1,11 @@
+const ENGINE_DB = process.env.ENGINE_DB;
+
+const pathModels = (ENGINE_DB === 'mongo') ? './mongo/' : './mysql/';
+
 const models = {
-    usersModel: require('./no_sql/users'),
-    tracksModel: require('./no_sql/tracks'),
-    storageModel: require('./no_sql/storage')
+    usersModel: require(`${pathModels}users`),
+    tracksModel: require(`${pathModels}tracks`),
+    storageModel: require(`${pathModels}storage`)
 }
 
 module.exports = models;

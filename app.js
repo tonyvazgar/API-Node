@@ -1,8 +1,11 @@
 require("dotenv").config()
 const express = require("express")
-const cors    = require("cors")
-const app     = express()
-const dbConnect = require("./config/mongo")
+const cors = require("cors")
+const app = express()
+const dbConnectMongo = require("./config/mongo")
+const { dbConnectMySQL } = require('./config/mysql');
+
+const ENGINE_DB = process.env.ENGINE_DB;
 
 app.use(cors())
 app.use(express.json())
@@ -21,4 +24,7 @@ app.listen(port, () => {
         console.log("Corriendo en http://localhost:" + port);
 });
 
-dbConnect();
+/**
+ * Para saber con que BDD trabajar
+ */
+(ENGINE_DB === 'mongo') ? dbConnectMongo() : dbConnectMySQL();
