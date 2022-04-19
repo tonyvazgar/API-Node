@@ -12,8 +12,8 @@ const MEDIA_URL  = `${__dirname}/../storage`;
  */
 const getItems = async (req, res) => {
     try{
-        // const data = await storageModel.find({});    //Mongo
-        const data = await storageModel.findAll();      //Mysql
+        const data = await storageModel.find({});    //Mongo
+        // const data = await storageModel.findAll();      //Mysql
         res.send({data});
     }catch(error){
         handleHttpError(res, "ERROR_GET_ITEMS");

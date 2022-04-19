@@ -11,8 +11,8 @@ const login = async (req, res) => {
     try {
         req = matchedData(req);
         console.log(req);
-        // const user = await usersModel.findOne({ email: req.email }).select('password name role email');                  //SI ES CON MONGO;
-        const user = await usersModel.findOne({ email: req.email });    //solo con mysql
+        const user = await usersModel.findOne({ email: req.email }).select('password name role email');                  //SI ES CON MONGO;
+        // const user = await usersModel.findOne({ email: req.email });    //solo con mysql
         if (!user) {
             handleHttpError(res, "USER_NOT_FOUND", 404);
             return
@@ -65,8 +65,8 @@ const register = async (req, res) => {
  */
 const listadoUsers = async (req, res) => {
     try {
-        // const data = await usersModel.find({});     //Mongo
-        const data = await usersModel.findAll();     //Mysql
+        const data = await usersModel.find({});     //Mongo
+        // const data = await usersModel.findAll();     //Mysql
         res.send({ data });
     } catch (error) {
         console.log(error);
