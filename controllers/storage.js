@@ -12,7 +12,8 @@ const MEDIA_URL  = `${__dirname}/../storage`;
  */
 const getItems = async (req, res) => {
     try{
-        const data = await storageModel.find({});
+        // const data = await storageModel.find({});    //Mongo
+        const data = await storageModel.findAll();      //Mysql
         res.send({data});
     }catch(error){
         handleHttpError(res, "ERROR_GET_ITEMS");
@@ -41,7 +42,7 @@ const getItem = async (req, res) => {
  */
 const createItem = async (req, res) => {
     const {body, file} = req;
-    console.log(file);
+    console.log({body, file});
     const fileData = {
         filename: file.filename,
         url: `${PUBLIC_URL}/${file.filename}`
