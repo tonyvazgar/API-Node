@@ -4,6 +4,8 @@ const cors = require("cors")
 const app = express()
 const dbConnectMongo = require("./config/mongo")
 const { dbConnectMySQL } = require('./config/mysql');
+const swaggerUI = require("swagger-ui-express");
+const openAPIconfiguration = require("./docs/swagger")
 
 const ENGINE_DB = process.env.ENGINE_DB;
 
@@ -12,6 +14,10 @@ app.use(express.json())
 app.use(express.static("storage"))
 
 const port = process.env.PORT || 5000;
+/**
+ * Definir ruta para documentacion
+ */
+app.use('/documentation', swaggerUI.serve, swaggerUI.setup(openAPIconfiguration));
 
 /*
  *  AQUI INVOCAMOS A LAS RUTAS DE TRACKS
