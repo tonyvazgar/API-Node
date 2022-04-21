@@ -14,6 +14,7 @@ const getItems = async (req, res) => {
     try{
         const data = await storageModel.find({});    //Mongo
         // const data = await storageModel.findAll();      //Mysql
+        res.status(200);
         res.send({data});
     }catch(error){
         handleHttpError(res, "ERROR_GET_ITEMS");
@@ -48,7 +49,7 @@ const createItem = async (req, res) => {
         url: `${PUBLIC_URL}/${file.filename}`
     }
     const data = await storageModel.create(fileData);
-
+    res.status(201);
     res.send({data});
 };
 

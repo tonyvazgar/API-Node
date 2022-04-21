@@ -11,7 +11,7 @@ const login = async (req, res) => {
     try {
         req = matchedData(req);
         console.log(req);
-        const user = await usersModel.findOne({ email: req.email }).select('password name role email');                  //SI ES CON MONGO;
+        const user = await usersModel.findOne({ email: req.email }).select('password email');;                  //SI ES CON MONGO;
         // const user = await usersModel.findOne({ email: req.email });    //solo con mysql
         if (!user) {
             handleHttpError(res, "USER_NOT_FOUND", 404);
@@ -22,7 +22,7 @@ const login = async (req, res) => {
         const check = await compare(req.password, userHash);
 
         if (!check) {
-            handleHttpError(res, "EROR_PASSWORD", 402);
+            handleHttpError(res, "EROR_PASSWORD", 401);
             return
         }
         user.set('password', undefined, { stric: false });
@@ -43,8 +43,8 @@ const login = async (req, res) => {
 const register = async (req, res) => {
     try {
         req = matchedData(req);
-        const hashPassword = await encrypt(req.password);
-        const body = { ...req, password: hashPassword }
+        const password = await encrypt(req.password);
+        const body = { ...req, password }
         const dataUser = await usersModel.create(body);
         dataUser.set("password", undefined, { strict: false });
 
@@ -52,9 +52,10 @@ const register = async (req, res) => {
             token: await signToken(dataUser),
             user: dataUser
         }
-
+        res.status(201)
         res.send({ data });
     } catch (error) {
+        console.log(error);
         handleHttpError(res, "ERROR_REGISTER")
     }
 };
