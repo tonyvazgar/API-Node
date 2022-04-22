@@ -14,7 +14,7 @@ const swaggerDefinition = {
             url: "http://localhost:3000/api"
         },
         {
-            url: "http://localhost:5000/api"
+            url: "https://shielded-scrubland-77049.herokuapp.com/api"
         }
     ],
     components: {

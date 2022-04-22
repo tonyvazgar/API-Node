@@ -8,7 +8,7 @@ const swaggerUI = require("swagger-ui-express");
 const openAPIconfiguration = require("./docs/swagger")
 
 const ENGINE_DB = process.env.ENGINE_DB;
-const NODE_ENV  = process.env.NODE_ENV || "development";
+const NODE_ENV = process.env.NODE_ENV || "development";
 
 app.use(cors())
 app.use(express.json())
@@ -26,8 +26,9 @@ app.use('/documentation', swaggerUI.serve, swaggerUI.setup(openAPIconfiguration)
 //TODO lo que va en LOCALHOST/API/****
 app.use('/api', require('./routes/'));
 
+app.use("/", (req, res) => { res.redirect("/documentation") });
 
-if(NODE_ENV !== "test"){
+if (NODE_ENV !== "test") {
         app.listen(port, () => {
                 console.log("Corriendo en http://localhost:" + port);
         });
